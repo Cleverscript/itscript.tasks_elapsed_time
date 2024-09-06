@@ -47,6 +47,7 @@ class UserTasksService
             //dump($row);
 
             $time = BaseHelper::secToArray($row['SECONDS_SUMM']);
+            $time = implode(':', [$time['hour'], $time['min'], $time['sec']]);
 
             $userFio = implode(' ', array_filter([
                 $row['USER_LAST_NAME'],
@@ -57,7 +58,7 @@ class UserTasksService
             $data[] = [
                 'ID' => $row['TASK_ID'],
                 'NAME' => $row['TASK_NAME'],
-                'TIME' => implode(':', [$time['hour'], $time['min'], $time['sec']]),
+                'TIME' => $time,
                 'USER' => $row['USER_ID'],
                 'USER_FIO' => $userFio,
             ];
